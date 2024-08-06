@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 const userRouter = require("./routes/user");
 const verifyRouter = require("./routes/verify")
 require('dotenv').config();
+const cors = require("cors")
 
 const app = express();
 const PORT = process.env.PORT || 7000;
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 7000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));  
 app.use(cookieParser());
+app.use(cors());
 
 // Routes
 app.use('/user', userRouter);
