@@ -7,9 +7,9 @@ exports.signup = async (req, res, next) => {
   try {
     const { name, email, phoneNumber, password } = req.body;
 
-    if (!name || !email || !password || !phoneNumber) {
-      throw new Error("Please provide all fields");
-    }
+    // if (!name || !email || !password || !phoneNumber) {
+    //   throw new Error("Please provide all fields");
+    // }
 
     const hashPassword = await bcrypt.hash(password, 10);
 
@@ -33,9 +33,6 @@ exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({ error: "Please provide all fields" });
-    }
 
     const user = await prisma.user.findUnique({
       where: { email },
