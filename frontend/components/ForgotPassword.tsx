@@ -1,32 +1,27 @@
-import { View, Text, StyleSheet, Image, TouchableHighlight, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from "./Navigation";
 import axios from 'axios';
 import { API_Backend } from '../API_backend/API';
 
-const Login = () => {
-    const [email, setEmail] = useState<string>("");
+
+const ForgotPassword = () => {
     const [password, setPassword] = useState<string>("");
+    const [confirmPassword, setConfirmPassword] = useState<string>("");
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
-    const handleSubmit = async () => {
-        if(!email.trim() || !password.trim()){
-            Alert.alert("Error", "All fields are required");
+    const passwordSet = async () => {
+        if (password !== confirmPassword) {
+            Alert.alert("Error", "Passwords do not match");
             return;
         }
         try {
-            const res = await axios.post(`${API_Backend}/user/login`, {
-                email,
-                password
-            });
+            const res = await axios.put(`${API_Backend}/user/${userId}/password`, { password });
             console.log(res.data);
-            Alert.alert("Success", "Login Successful!");
-            setEmail("");
-            setPassword("");
-        } catch (error: any) {
-            console.log(error);
-            Alert.alert("Error",  "Please try again");
+            Alert.alert("Success", res.data.message);
+        } catch (error) {
+            Alert.alert("Error", "Failed to set password");
         }
     };
 
@@ -34,26 +29,25 @@ const Login = () => {
         <View style={styles.container}>
             <Image style={styles.image} source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQil1bJOEymH6fHg58kSZ4YjnB2P4NoYfWNw&s" }} />
             <View style={styles.form}>
+                <Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold", color: "deepskyblue", marginBottom: 20 }}>New Password Set</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder='Email'
-                    value={email}
-                    onChangeText={text => setEmail(text)}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder='Password'
+                    placeholder='Enter New password'
                     secureTextEntry
                     value={password}
-                    onChangeText={text => setPassword(text)}
+                    onChangeText={setPassword}
                 />
-                <View style={{flexDirection:"row",justifyContent:"space-between", marginBottom:0}}>
-                    <Text></Text>
-                <Text onPress={()=>navigation.navigate("VerifyEmail")} style={{fontSize:18, color:"deepskyblue", fontWeight:"bold" }}>Forgot password?</Text></View>
+                <TextInput
+                    style={styles.input}
+                    placeholder='Re Enter Your Password'
+                    secureTextEntry
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                />
             </View>
-            <TouchableHighlight style={styles.button} >
-                <Text onPress={handleSubmit} style={styles.buttonText}>Login</Text>
-            </TouchableHighlight>
+            <TouchableOpacity style={styles.button} onPress={passwordSet}>
+                <Text style={styles.buttonText}>Sign in</Text>
+            </TouchableOpacity>
             <View>
                 <Text style={styles.footer}>Don't have an account? <Text style={{ color: "deepskyblue", fontWeight: "bold" }} onPress={() => navigation.navigate("Signup")}>Signup</Text></Text>
             </View>
@@ -95,7 +89,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "white",
         fontSize: 18,
-        fontWeight:"bold",
+        fontWeight: "bold",
     },
     footer: {
         textAlign: "center",
@@ -104,4 +98,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Login;
+export default ForgotPassword;
