@@ -4,10 +4,10 @@ const userRouter = require("./routes/user");
 const verifyRouter = require("./routes/verify")
 require('dotenv').config();
 const cors = require("cors")
-const isLogged = require("./middlewares/isLoggedIn")
+const dataRouter = require("./routes/decoded")
 
 const app = express();
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 7002;
 
 // Middleware
 app.use(express.json());
@@ -18,10 +18,11 @@ app.use(cors());
 // Routes
 app.use('/user', userRouter);
 app.use("/", verifyRouter)
+app.use("/", dataRouter)
+// app.get('/harash', isLogged, (req, res) => {
+//     res.json(`Harash", ${req.user.id}`);
+// });
 
-app.get('/harash', isLogged, (req, res) => {
-    res.send(`Harash", ${req.user.email}`);
-});
 
 
 app.use((err, req, res, next) => {

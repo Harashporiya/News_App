@@ -36,6 +36,7 @@ const VerifyEmail = () => {
             Alert.alert("Success", "Verification successfully");
             setEmail("");
             setCode("");
+            navigation.navigate("ForgotPassword")
         } catch (error) {
             Alert.alert("Error", "Invalid Verification code");
         }
