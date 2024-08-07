@@ -4,6 +4,7 @@ const userRouter = require("./routes/user");
 const verifyRouter = require("./routes/verify")
 require('dotenv').config();
 const cors = require("cors")
+const isLogged = require("./middlewares/isLoggedIn")
 
 const app = express();
 const PORT = process.env.PORT || 7000;
@@ -18,8 +19,8 @@ app.use(cors());
 app.use('/user', userRouter);
 app.use("/", verifyRouter)
 
-app.get('/', (req, res) => {
-    res.send("Harash");
+app.get('/harash', isLogged, (req, res) => {
+    res.send(`Harash", ${req.user.email}`);
 });
 
 
