@@ -4,6 +4,7 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from "./Navigation";
 import axios from 'axios';
 import { API_Backend } from '../API_backend/API';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = () => {
     const [email, setEmail] = useState<string>("");
@@ -24,6 +25,9 @@ const Login = () => {
             Alert.alert("Success", "Login Successful!");
             setEmail("");
             setPassword("");
+            const token = res.data.token
+          await AsyncStorage.setItem('token', token);
+            // console.log("login",token)
         } catch (error: any) {
             console.log(error);
             Alert.alert("Error",  "Please try again");

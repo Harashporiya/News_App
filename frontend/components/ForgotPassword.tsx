@@ -1,25 +1,44 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from "./Navigation";
 import axios from 'axios';
 import { API_Backend } from '../API_backend/API';
 
-
 const ForgotPassword = () => {
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
+    const [userId, setUserId] = useState<string>('');
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
+     
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const res = await axios.get(`${API_Backend}/data`);
+                setUserId(res.data.id);
+                // console.log(res.data.id)
+            } catch (error) {
+                console.error("Failed to fetch user data", error);
+            }
+        };
+        fetchUserData();
+    }, []);
+    
     const passwordSet = async () => {
+        if(!password.trim() || !confirmPassword.trim()){
+            Alert.alert("Error", "All fields are requireds");
+            return;
+        }
         if (password !== confirmPassword) {
             Alert.alert("Error", "Passwords do not match");
             return;
         }
         try {
             const res = await axios.put(`${API_Backend}/user/${userId}/password`, { password });
-            console.log(res.data);
+            // console.log(res.data);
             Alert.alert("Success", res.data.message);
+            setPassword("");
+            setConfirmPassword("");
         } catch (error) {
             Alert.alert("Error", "Failed to set password");
         }

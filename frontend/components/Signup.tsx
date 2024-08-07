@@ -4,7 +4,7 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from "./Navigation";
 import { API_Backend } from '../API_backend/API';
 import axios from 'axios';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Signup = () => {
     
@@ -34,6 +34,9 @@ const Signup = () => {
             setEmail("");
             setmobile("");
             setpassword("");
+            const token = response.data.token
+            await AsyncStorage.setItem('token', token);
+            // console.log(token)
         } catch (error) {
             console.log(error)
             Alert.alert("Error", "Failed to Create Account");

@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import VerifyEmail from './components/VerifyEmail';
 import ForgotPassword from './components/ForgotPassword';
+import ShowNews from './components/ShowNews';
+import SearchContury from './components/SearchContury';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,8 +15,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-
-        {/* <Stack.Screen
+{/* 
+        <Stack.Screen
           name='Signup'
           component={Signup} />
 
@@ -24,11 +26,20 @@ export default function App() {
           
           <Stack.Screen
           name='VerifyEmail'
-          component={VerifyEmail}/> */}
+          component={VerifyEmail}/>
 
           <Stack.Screen
           name='ForgotPassword'
-          component={ForgotPassword}/>
+          component={ForgotPassword}/> */}
+
+          <Stack.Screen
+          name='ShowNews'
+          component={ShowNews}/>
+
+          {/* <Stack.Screen
+          name='SearchCountry'
+          component={SearchContury}/> */}
+
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const isLogged = async(req, res, next)=>{
     try {
         const token = req.cookies.token
-        console.log(token);
+        // console.log(token);
 
         if(!token){
             res.send("Please Login")
@@ -27,4 +27,4 @@ const isLogged = async(req, res, next)=>{
         throw new Error(error)
     }
 }
-module.exports = isLogged
+module.exports = {isLogged}
