@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, Image, TouchableHighlight, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from "./Navigation";
 import { API_Backend } from '../API_backend/API';
 import axios from 'axios';
+
 
 const Signup = () => {
     
@@ -69,9 +70,9 @@ const Signup = () => {
                     onChangeText={text => setpassword(text)}
                 />
             </View>
-            <TouchableHighlight style={styles.button} >
+            <TouchableOpacity style={styles.button} >
                 <Text onPress={handelSubmit} style={styles.buttonText}>Signup</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
             <View>
                 <Text style={styles.footer}>Already have an account? <Text style={{color:"deepskyblue", fontWeight:"bold"}} onPress={()=>navigation.navigate("Login")}>Login</Text></Text>
             </View>

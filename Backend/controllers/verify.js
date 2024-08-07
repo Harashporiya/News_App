@@ -57,8 +57,9 @@ const sendCode = async (req, res) => {
   }
 };
 
+
 const verifyCode = async (req, res) => {
-  const { email, code } = req.body;
+  const { email,  code } = req.body;
 
   try {
     const user = await prisma.verify.findUnique({
@@ -94,6 +95,7 @@ const getUser = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching the user details' });
   }
 };
+
 
 module.exports = {
   sendCode,

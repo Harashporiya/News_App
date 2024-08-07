@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import VerifyEmail from './components/VerifyEmail';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,14 +13,17 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
 
-        <Stack.Screen
+        {/* <Stack.Screen
           name='Signup'
           component={Signup} />
 
         <Stack.Screen
           name='Login'
-          component={Login} />
-
+          component={Login} /> */}
+          
+          <Stack.Screen
+          name='VerifyEmail'
+          component={VerifyEmail}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
