@@ -27,3 +27,12 @@ model verify {
   email    String  @unique
   sendVerifyCode String @unique
 }
+
+model forgot{
+   id       String  @id @default(auto()) @map("_id") @db.ObjectId
+   email    String @unique
+   sendVerifyCode String @unique
+   newpassword  String
+   reenterpassword String
+  
+}

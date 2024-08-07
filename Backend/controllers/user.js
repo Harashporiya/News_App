@@ -55,3 +55,34 @@ exports.login = async (req, res) => {
     throw new Error(error)
   }
 };
+
+exports.updatePassword = async (req, res) => {
+  const { id } = req.params;
+  const { password } = req.body;
+
+  if (!password || password.length < 6) {
+    return res.status(400).json({ error: 'Password must be at least 6 characters long' });
+  }
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: id }, 
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const updatedUser = await prisma.user.update({
+      where: { id: id },
+      data: { password: hashedPassword },
+    });
+
+    res.status(200).json({ message: 'Password updated successfully', updatedUser });
+  } catch (error) {
+    console.error("Error during password update:", error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
