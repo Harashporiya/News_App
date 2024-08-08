@@ -17,7 +17,7 @@ const VerifyEmail = () => {
         }
         try {
             const res = await axios.post(`${API_Backend}/send-code`, { email });
-            console.log(res.data);
+            // console.log(res.data);
             Alert.alert("Success", "Verification code sent successfully");
         } catch (error: any) {
             console.log(error);
@@ -32,7 +32,7 @@ const VerifyEmail = () => {
         }
         try {
             const res = await axios.post(`${API_Backend}/verify-code`, { code, email });
-            console.log(res.data);
+            // console.log(res.data);
             Alert.alert("Success", "Verification successfully");
             setEmail("");
             setCode("");

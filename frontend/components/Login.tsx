@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableHighlight, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from "./Navigation";
@@ -21,7 +21,7 @@ const Login = () => {
                 email,
                 password
             });
-            console.log(res.data);
+            // console.log(res.data);
             Alert.alert("Success", "Login Successful!");
             setEmail("");
             setPassword("");
@@ -56,9 +56,9 @@ const Login = () => {
                     <Text></Text>
                 <Text onPress={()=>navigation.navigate("VerifyEmail")} style={{fontSize:18, color:"deepskyblue", fontWeight:"bold" }}>Forgot password?</Text></View>
             </View>
-            <TouchableHighlight style={styles.button} >
-                <Text onPress={handleSubmit} style={styles.buttonText}>Login</Text>
-            </TouchableHighlight>
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                <Text  style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
             <View>
                 <Text style={styles.footer}>Don't have an account? <Text style={{ color: "deepskyblue", fontWeight: "bold" }} onPress={() => navigation.navigate("Signup")}>Signup</Text></Text>
             </View>

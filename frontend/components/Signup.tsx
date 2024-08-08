@@ -83,8 +83,8 @@ const Signup = () => {
                     onChangeText={text => setpassword(text)}
                 />
             </View>
-            <TouchableOpacity style={styles.button} >
-                <Text onPress={handelSubmit} style={styles.buttonText}>Signup</Text>
+            <TouchableOpacity style={styles.button} onPress={handelSubmit}>
+                <Text  style={styles.buttonText}>Signup</Text>
             </TouchableOpacity>
             <View>
                 <Text style={styles.footer}>Already have an account? <Text style={{color:"deepskyblue", fontWeight:"bold"}} onPress={()=>navigation.navigate("Login")}>Login</Text></Text>

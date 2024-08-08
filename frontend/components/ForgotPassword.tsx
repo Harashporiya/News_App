@@ -39,6 +39,7 @@ const ForgotPassword = () => {
             Alert.alert("Success", res.data.message);
             setPassword("");
             setConfirmPassword("");
+            navigation.navigate("Login")
         } catch (error) {
             Alert.alert("Error", "Failed to set password");
         }
