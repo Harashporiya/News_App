@@ -9,6 +9,7 @@ import ForgotPassword from './components/ForgotPassword';
 import ShowNews from './components/ShowNews';
 import SearchContury from './components/SearchContury';
 
+import IndiaNews from './components/IndiaNews';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -39,6 +40,10 @@ export default function App() {
           {/* <Stack.Screen
           name='SearchCountry'
           component={SearchContury}/> */}
+
+          {/* <Stack.Screen
+          name='IndiaNews'
+          component={IndiaNews}/> */}
 
       </Stack.Navigator>
     </NavigationContainer>
