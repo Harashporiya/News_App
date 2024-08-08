@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet, Image, ScrollView, TouchableOpacity, 
 import axios from 'axios';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
-import { API_KEY } from '../API_backend/API';
+import { API_KEY_2} from '../API_backend/API';
 import {countries} from "../components/Conutry"
 import { categories} from "../components/Category"
 
@@ -35,7 +35,7 @@ const ShowNews: React.FC = () => {
       try {
         const formattedDate = date.toISOString().split('T')[0];
         const response = await axios.get(
-          `https://newsapi.org/v2/everything?q=${category}+${country}&from=${formattedDate}&sortBy=publishedAt&apiKey=${API_KEY}&lan=hi`
+          `https://newsapi.org/v2/everything?q=${category}+${country}&from=${formattedDate}&sortBy=publishedAt&apiKey=${API_KEY_2}&lan=hi`
         );
         setNews(response.data.articles);
       } catch (err) {
@@ -78,6 +78,7 @@ const ShowNews: React.FC = () => {
   }
 
   return (
+    <>
     <View style={styles.container}>
       <FlatList
         data={categories}
@@ -91,14 +92,16 @@ const ShowNews: React.FC = () => {
             onPress={() => setCategory(item)}
             accessibilityLabel={`Select ${item} category`}
           >
+            {/* <View style={{padding:0}}> */}
             <Text style={[styles.buttonText, item === category && styles.selectedButtonText]}>
               {item}
             </Text>
+            {/* </View> */}
           </TouchableOpacity>
         )}
       />
-
-      {!dataSelected && news.length === 0 && (
+     </View>
+      {/* {!dataSelected && news.length === 0 && ( */}
         <>
           <Picker
             selectedValue={country}
@@ -128,7 +131,7 @@ const ShowNews: React.FC = () => {
             />
           )}
         </>
-      )}
+      {/* )} */}
 
       <FlatList
         data={news}
@@ -147,7 +150,8 @@ const ShowNews: React.FC = () => {
         )}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
-    </View>
+   
+    </>
   );
 };
 
@@ -185,20 +189,21 @@ const styles = StyleSheet.create({
     padding: 4,
     borderRadius: 13,
     textAlign: 'center',
-    backgroundColor: 'deepskyblue',
+    //  backgroundColor: 'black',
   },
   selectedButton: {
-    backgroundColor: 'white',
-    borderColor: 'deepskyblue',
-    borderWidth: 1,
+    // backgroundColor: 'white',
+    // borderColor: 'deepskyblue',
+    // borderWidth: 1,
   },
   buttonText: {
-    color: 'white',
-    fontSize: 15,
+    color: 'gray',
+    fontSize: 20,
   },
   selectedButtonText: {
-    color: 'deepskyblue',
+    color: 'black',
     fontWeight: "bold",
+    textDecorationLine: "underline",
   },
   picker: {
     marginVertical: 10,
