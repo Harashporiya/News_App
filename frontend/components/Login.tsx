@@ -28,6 +28,7 @@ const Login = () => {
             const token = res.data.token
           await AsyncStorage.setItem('token', token);
             // console.log("login",token)
+            navigation.navigate("ShowNews")
         } catch (error: any) {
             console.log(error);
             Alert.alert("Error",  "Please try again");
