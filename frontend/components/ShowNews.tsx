@@ -4,6 +4,9 @@ import axios from 'axios';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
 import { API_KEY } from '../API_backend/API';
+import {countries} from "../components/Conutry"
+import { categories} from "../components/Category"
+
 
 interface Article {
   url: string;
@@ -15,21 +18,6 @@ interface Article {
   author: string;
 }
 
-const countries = [
-  "India",  "United States", "Canada", "United Kingdom", "Australia", "Germany", "France",
-  "Japan", "China", "Brazil", "Russia", "Italy", "Spain", "Mexico", "South Korea", "South Africa", "New Zealand",
-  "Argentina", "Saudi Arabia", "Sweden", "Switzerland", "Netherlands", "Norway", "Finland",
-  "Denmark", "Belgium", "Austria", "Poland", "Portugal", "Greece", "Turkey", "Israel", "United Arab Emirates", "Singapore",
-  "Malaysia", "Indonesia", "Thailand", "Vietnam", "Philippines", "Egypt", "Nigeria", "Kenya", "Chile",
-  "Peru", "Colombia", "Venezuela", "Iran", "Pakistan", "Bangladesh", "Qatar"
-];
-
-const categories = [
-  'National News', 'International News', 'Politics', 'Business', 'Technology',
-  'Sports', 'Entertainment', 'Health', 'Science', 'Education', 'Lifestyle',
-  'Environment', 'Crime', 'Opinion', 'Regional News'
-];
-
 const ShowNews: React.FC = () => {
   const [news, setNews] = useState<Article[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -38,7 +26,7 @@ const ShowNews: React.FC = () => {
   const [date, setDate] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [dataSelected, setDataSelected] = useState<boolean>(false);
-  const [country, setCountry] = useState<string>('India');
+  const [country, setCountry] = useState<string>('Country News');
 
   useEffect(() => {
     const fetchNews = async () => {
