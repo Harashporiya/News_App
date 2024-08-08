@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Image, ScrollView, TouchableOpacity, Linking, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, Linking, ActivityIndicator ,FlatList} from 'react-native';
 import axios from 'axios';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
-import { API_KEY_2} from '../API_backend/API';
-import {countries} from "../components/Conutry"
-import { categories} from "../components/Category"
-
+import { API_KEY_2 } from '../API_backend/API';
+import { countries } from "../components/Conutry";
+import { categories } from "../components/Category";
 
 interface Article {
   url: string;
@@ -79,59 +78,50 @@ const ShowNews: React.FC = () => {
 
   return (
     <>
-    <View style={styles.container}>
-      <FlatList
-        data={categories}
-        horizontal
-        keyExtractor={(item) => item}
-        contentContainerStyle={styles.categoriesContainer}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            key={item}
-            style={[styles.button, item === category && styles.selectedButton]}
-            onPress={() => setCategory(item)}
-            accessibilityLabel={`Select ${item} category`}
-          >
-            {/* <View style={{padding:0}}> */}
-            <Text style={[styles.buttonText, item === category && styles.selectedButtonText]}>
-              {item}
-            </Text>
-            {/* </View> */}
-          </TouchableOpacity>
-        )}
-      />
-     </View>
-      {/* {!dataSelected && news.length === 0 && ( */}
-        <>
-          <Picker
-            selectedValue={country}
-            onValueChange={(itemValue) => setCountry(itemValue)}
-            style={styles.picker}
-            accessibilityLabel="Select country"
-          >
-            {countries.map((country) => (
-              <Picker.Item key={country} label={country} value={country} />
-            ))}
-          </Picker>
+      <View style={styles.container}>
+        <ScrollView horizontal contentContainerStyle={styles.categoriesContainer}>
+          {categories.map((item) => (
+            <TouchableOpacity
+              key={item}
+              style={[styles.button, item === category && styles.selectedButton]}
+              onPress={() => setCategory(item)}
+              accessibilityLabel={`Select ${item} category`}
+            >
+              <Text style={[styles.buttonText, item === category && styles.selectedButtonText]}>
+                {item}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
+      
+      <Picker
+        selectedValue={country}
+        onValueChange={(itemValue) => setCountry(itemValue)}
+        style={styles.picker}
+        accessibilityLabel="Select country"
+      >
+        {countries.map((country) => (
+          <Picker.Item key={country} label={country} value={country} />
+        ))}
+      </Picker>
 
-          <TouchableOpacity
-            style={styles.dateButton}
-            onPress={() => setShowDatePicker(true)}
-            accessibilityLabel="Select date"
-          >
-            <Text style={styles.dateButtonText}>Select Date</Text>
-          </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.dateButton}
+        onPress={() => setShowDatePicker(true)}
+        accessibilityLabel="Select date"
+      >
+        <Text style={styles.dateButtonText}>Select Date</Text>
+      </TouchableOpacity>
 
-          {showDatePicker && (
-            <DateTimePicker
-              value={date}
-              mode="date"
-              display="default"
-              onChange={handleDateChange}
-            />
-          )}
-        </>
-      {/* )} */}
+      {showDatePicker && (
+        <DateTimePicker
+          value={date}
+          mode="date"
+          display="default"
+          onChange={handleDateChange}
+        />
+      )}
 
       <FlatList
         data={news}
@@ -150,7 +140,6 @@ const ShowNews: React.FC = () => {
         )}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
-   
     </>
   );
 };
@@ -189,12 +178,9 @@ const styles = StyleSheet.create({
     padding: 4,
     borderRadius: 13,
     textAlign: 'center',
-    //  backgroundColor: 'black',
   },
   selectedButton: {
-    // backgroundColor: 'white',
-    // borderColor: 'deepskyblue',
-    // borderWidth: 1,
+    // customize selected button styles here
   },
   buttonText: {
     color: 'gray',
