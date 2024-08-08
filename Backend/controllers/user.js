@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 exports.signup = async (req, res, next) => {
   try {
-    const { name, email, phoneNumber, password } = req.body;
+    const { username,firstname, lastname,  email, password } = req.body;
 
     // if (!name || !email || !password || !phoneNumber) {
     //   throw new Error("Please provide all fields");
@@ -15,9 +15,10 @@ exports.signup = async (req, res, next) => {
 
     const user = await prisma.user.create({
       data: {
-        name,
+        username,
+        firstname,
+        lastname,
         email,
-        phoneNumber,
         password: hashPassword,
       },
     });

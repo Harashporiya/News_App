@@ -3,4 +3,5 @@ export type RootStackParamList={
     Login:undefined;
     VerifyEmail:undefined;
     ForgotPassword:undefined;
+    ShowNews:undefined;
 }

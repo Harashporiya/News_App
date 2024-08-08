@@ -8,14 +8,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Signup = () => {
     
-    const [name, setname] = useState<string>('');
+    const [username, setusername] = useState<string>('');
+    const [firstname, setfirstname] = useState<string>('');
+    const [lastname, setlastname] = useState<string>('');
     const [email, setEmail] = useState<string>('')
-    const [phoneNumber, setmobile] = useState<string>('');
     const [password, setpassword] = useState<string>('')
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const handelSubmit = async () => {
-        if(!name.trim() || !email.trim() || !phoneNumber.trim() || !password.trim()){
+        if(!username.trim() || !email.trim() || !firstname.trim() || !password.trim() || !lastname.trim()){
             Alert.alert("Error", "All fields are required");
             return;
         }
@@ -23,19 +24,22 @@ const Signup = () => {
            
 
             const response = await axios.post(`${API_Backend}/user/signup`, {
-                name,
+                username,
+                firstname,
+                lastname,
                 email,
-                phoneNumber,
                 password,
             });
             // console.log(response.data);
             Alert.alert("Success", "Create Account Successful!");
-            setname('');
+            setusername('');
+            setfirstname('');
+            setlastname('');
             setEmail("");
-            setmobile("");
             setpassword("");
             const token = response.data.token
             await AsyncStorage.setItem('token', token);
+            navigation.navigate("ShowNews")
             // console.log(token)
         } catch (error) {
             console.log(error)
@@ -50,20 +54,26 @@ const Signup = () => {
                 <TextInput
                     style={styles.input}
                     placeholder='Username'
-                    value={name}
-                    onChangeText={text => setname(text)}
+                    value={username}
+                    onChangeText={text => setusername(text)}
+                />
+                 <TextInput
+                    style={styles.input}
+                    placeholder='Firstname'
+                    value={firstname}
+                    onChangeText={text => setfirstname(text)}
+                />
+                 <TextInput
+                    style={styles.input}
+                    placeholder='Lastname'
+                    value={lastname}
+                    onChangeText={text => setlastname(text)}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder='Email'
                     value={email}
                     onChangeText={text => setEmail(text)}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder='Mobile Number'
-                    value={phoneNumber}
-                    onChangeText={text => setmobile(text)}
                 />
                 <TextInput
                     style={styles.input}
