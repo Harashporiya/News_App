@@ -10,6 +10,8 @@ interface Article {
   description: string;
   urlToImage: string;
   content: string;
+  publishedAt:string;
+  author:string;
 }
 
 const categories = [
@@ -70,7 +72,7 @@ const ShowNews: React.FC = () => {
   }
 
   return (
-    <ScrollView>
+    <>
     <View style={styles.container}>
       
       <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
@@ -90,7 +92,10 @@ const ShowNews: React.FC = () => {
           ))}
         </View>
       </ScrollView>
-    
+
+      </View>
+    <ScrollView>
+      
       <TouchableOpacity style={styles.dateButton} onPress={() => setShowDatePicker(true)}>
         <Text style={styles.dateButtonText}>Select Date</Text>
       </TouchableOpacity>
@@ -103,30 +108,32 @@ const ShowNews: React.FC = () => {
           onChange={handleDateChange}
         />
       )}
-       
+      
       <FlatList
         data={news}
         keyExtractor={(item) => item.url}
         renderItem={({ item }) => (
           <View style={styles.newsItem}>
             {item.urlToImage && <Image style={styles.image} source={{ uri: item.urlToImage }} />}
+            <Text><Text style={{fontWeight:"bold"}}>Author: </Text>{item.author}</Text>
             <Text style={styles.title}>{item.title}</Text>
             <Text>{item.description}</Text>
             <Text>{item.content}</Text>
+            <Text><Text style={{fontWeight:"bold"}}>Time and Date: </Text>{item.publishedAt}</Text>
+           
           </View>
         )}
       />
-     
-    </View>
-    </ScrollView>
+     </ScrollView>
+    
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
   },
   scrollContainer: {
     paddingVertical: 10,
@@ -138,27 +145,28 @@ const styles = StyleSheet.create({
   button: {
     margin: 6,
     fontSize: 20,
-    backgroundColor: "white",
-    padding: 20,
+    color:"white",
+    padding: 4,
     borderRadius: 13,
     textAlign: 'center',
   },
   selectedButton: {
-    backgroundColor: 'blue',
+    backgroundColor: 'white',
   },
   buttonText: {
-    color: 'black',
-    fontSize:18,
+    color: 'gray',
+    fontSize:15,
   },
   selectedButtonText: {
-    color: 'white',
+    color: 'black',
+    fontWeight:"bold",
   },
   dateButton: {
     backgroundColor: "deepskyblue",
     width: 130,
-    padding: 10,
+    padding: 5,
     borderRadius: 10,
-    marginTop: 30,
+    marginTop: 10,
     alignItems: 'center',
   },
   dateButtonText: {
