@@ -124,6 +124,8 @@
 npm install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
 
 // Axios for API Requests
+npm install axios
+// Icons
 npm install @expo/vector-icons
 ```
 - **API Key:** Used for fetching news data
@@ -139,7 +141,7 @@ npm install @expo/vector-icons
   - Users can set the date and select a country to filter the news.
   - The app will show all categories of news based on the user's preferences.
 
-
+ -**Demo**
 <div style="display: flex; flex-wrap: wrap; gap: 10px;padding:20;justify-content:space-between">
   <img src="./frontend/assets/Projectimage/Signup.png" alt="Signup Screen" width="300" height="600">
   <img src="./frontend/assets/Projectimage/Login.png" alt="Login Screen" width="300" height="600">
@@ -147,3 +149,4 @@ npm install @expo/vector-icons
   <img src="./frontend/assets/Projectimage/date.png" alt="Date Screen" width="300" height="600">
   <img src="./frontend/assets/Projectimage/News.png" alt="News Screen" width="300" height="600">
 </div>
+
