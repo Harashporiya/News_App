@@ -17,7 +17,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
 
-        {/* <Stack.Screen
+        <Stack.Screen
           name='Signup'
           component={Signup} />
 
@@ -31,7 +31,7 @@ export default function App() {
 
           <Stack.Screen
           name='ForgotPassword'
-          component={ForgotPassword}/> */}
+          component={ForgotPassword}/>
 
           <Stack.Screen
           name='ShowNews'
