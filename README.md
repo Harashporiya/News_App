@@ -117,7 +117,15 @@
 - **Language:** TypeScript
 ### 1. Install React Native CLI
 ```bash
- `npm install -g react-native-cli`
+ npm install -g react-native-cli
+ npx react-native init NewsApp --template react-native-template-typescript
+ // React Navigation
+ npm install @react-navigation/native @react-navigation/stack
+npm install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+
+// Axios for API Requests
+npm install @expo/vector-icons
+```
 - **API Key:** Used for fetching news data
 - **Routing:** React Native navigation for routing
 - **Components:**
