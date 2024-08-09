@@ -39,7 +39,7 @@ const Signup = () => {
             setpassword("");
             const token = response.data.token
             await AsyncStorage.setItem('token', token);
-            navigation.navigate("ShowNews")
+            navigation.navigate("News")
             // console.log(token)
         } catch (error) {
             console.log(error)
