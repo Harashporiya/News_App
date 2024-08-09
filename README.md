@@ -150,3 +150,9 @@ npm install @expo/vector-icons
   <img src="./frontend/assets/Projectimage/News.png" alt="News Screen" width="300" height="600">
 </div>
 
+### 2. Starting the Frontend
+- **Install All Dependencies:**  
+  `npm install`
+
+- **Start the React Native:**  
+  `npm start`
