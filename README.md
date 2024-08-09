@@ -140,8 +140,10 @@ npm install @expo/vector-icons
   - The app will show all categories of news based on the user's preferences.
 
 
-<img src="./frontend/assets/Projectimage/Signup.png" alt="Signup Screen" width="300" height="400">
-<img src="./frontend/assets/Projectimage/Login.png" alt="Login Screen" width="300" height="400">
-<img src="./frontend/assets/Projectimage/Verify.png" alt="Verify Screen" width="300" height="400">
-<img src="./frontend/assets/Projectimage/date.png" alt="Date Screen" width="300" height="00">
-<img src="./frontend/assets/Projectimage/News.png" alt="News Screen" width="300" height="400">
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="./frontend/assets/Projectimage/Signup.png" alt="Signup Screen" width="300" height="600">
+  <img src="./frontend/assets/Projectimage/Login.png" alt="Login Screen" width="300" height="600">
+  <img src="./frontend/assets/Projectimage/Verify.png" alt="Verify Screen" width="300" height="600">
+  <img src="./frontend/assets/Projectimage/date.png" alt="Date Screen" width="300" height="600">
+  <img src="./frontend/assets/Projectimage/News.png" alt="News Screen" width="300" height="600">
+</div>
