@@ -35,5 +35,4 @@ model forgot{
    sendVerifyCode String @unique
    newpassword  String
    reenterpassword String
-  
 }

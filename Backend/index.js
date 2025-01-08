@@ -7,7 +7,7 @@ const cors = require("cors")
 const dataRouter = require("./routes/decoded")
 
 const app = express();
-const PORT = process.env.PORT || 7002;
+const PORT = process.env.PORT || 8002;
 
 // Middleware
 app.use(express.json());
